@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SharePoint Intranet Portal - SSM Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sp-teal: #038387;
+            --sp-light-teal: #E7F6F8;
+            --sp-gray: #333333;
+            --sp-bg: #F3F2F1;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--sp-bg); margin: 0; padding: 0; color: var(--sp-gray); }
+        .sp-header { background: var(--sp-teal); color: white; padding: 0 1rem; height: 48px; display: flex; align-items: center; justify-content: space-between; }
+        .sp-header-left { display: flex; align-items: center; gap: 1rem; }
+        .sp-app-icon { font-size: 1.2rem; cursor: pointer; }
+        .sp-title { font-weight: 600; font-size: 1rem; }
+        .sp-header-right { display: flex; align-items: center; gap: 1rem; }
+        .sp-search { background: rgba(255,255,255,0.2); border: none; border-radius: 4px; padding: 4px 10px; color: white; width: 300px; }
+        .sp-search::placeholder { color: rgba(255,255,255,0.7); }
+        .sp-user { width: 32px; height: 32px; border-radius: 50%; background: #0089D6; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; }
+        
+        .sp-subnav { background: white; padding: 0.5rem 2rem; border-bottom: 1px solid #E1DFDD; display: flex; gap: 2rem; }
+        .sp-subnav a { text-decoration: none; color: var(--sp-gray); font-weight: 600; font-size: 0.9rem; }
+        .sp-subnav a.active { color: var(--sp-teal); border-bottom: 2px solid var(--sp-teal); padding-bottom: 0.5rem; margin-bottom: -0.5rem; }
+
+        .sp-main { padding: 2rem; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        
+        .sp-card { background: white; border-radius: 4px; box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,0.132), 0 0.3px 0.9px 0 rgba(0,0,0,0.108); margin-bottom: 2rem; }
+        .sp-card-header { padding: 1rem; border-bottom: 1px solid #E1DFDD; font-weight: 600; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center; }
+        .sp-card-body { padding: 1rem; }
+        
+        .news-hero { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; }
+        .news-title { font-size: 1.5rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+        .news-meta { color: #605E5C; font-size: 0.85rem; margin-bottom: 1rem; }
+        
+        .doc-list { list-style: none; padding: 0; margin: 0; }
+        .doc-item { display: flex; align-items: center; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid #F3F2F1; }
+        .doc-item:last-child { border-bottom: none; }
+        .doc-icon { color: #185ABD; font-size: 1.5rem; }
+        .doc-info { flex: 1; }
+        .doc-name { font-weight: 600; font-size: 0.9rem; margin: 0; }
+        .doc-meta { color: #605E5C; font-size: 0.8rem; margin: 0; }
+        
+        .quick-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .ql-card { background: var(--sp-light-teal); padding: 1rem; border-radius: 4px; text-align: center; color: var(--sp-teal); font-weight: 600; cursor: pointer; transition: transform 0.2s; }
+        .ql-card:hover { transform: translateY(-2px); }
+        .ql-card i { font-size: 2rem; margin-bottom: 0.5rem; }
+
+        .back-btn { display: inline-block; margin: 2rem; text-decoration: none; color: var(--sp-teal); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header class="sp-header">
+        <div class="sp-header-left">
+            <i class="fas fa-th sp-app-icon"></i>
+            <span class="sp-title">SharePoint</span>
+        </div>
+        <div class="sp-search-container">
+            <input type="text" class="sp-search" placeholder="Search in SharePoint">
+        </div>
+        <div class="sp-header-right">
+            <i class="fas fa-cog"></i>
+            <i class="fas fa-question-circle"></i>
+            <div class="sp-user">JD</div>
+        </div>
+    </header>
+
+    <nav class="sp-subnav">
+        <a href="#" class="active">Home</a>
+        <a href="#">Departments</a>
+        <a href="#">Examination</a>
+        <a href="#">NAAC Library</a>
+        <a href="#">Policies</a>
+    </nav>
+
+    <main class="sp-main">
+        <div class="sp-content-left">
+            <div class="sp-card">
+                <div class="sp-card-body">
+                    <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Campus News" class="news-hero">
+                    <h2 class="news-title">Annual Convocation Date Announced</h2>
+                    <p class="news-meta">Published by Administration • 2 hours ago</p>
+                    <p>The annual convocation ceremony for the graduating class of 2026 will be held on the 15th of May. All faculty members are requested to review the committee allocations.</p>
+                </div>
+            </div>
+            
+            <div class="sp-card">
+                <div class="sp-card-header">
+                    <span>Recent Documents</span>
+                    <a href="#" style="color: var(--sp-teal); font-size: 0.9rem; text-decoration: none;">See all</a>
+                </div>
+                <div class="sp-card-body">
+                    <ul class="doc-list">
+                        <li class="doc-item">
+                            <i class="fas fa-file-word doc-icon"></i>
+                            <div class="doc-info">
+                                <p class="doc-name">Revised_Academic_Calendar_2026.docx</p>
+                                <p class="doc-meta">Modified by Dr. Sharma • 3 hours ago</p>
+                            </div>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-file-excel doc-icon" style="color: #107C10;"></i>
+                            <div class="doc-info">
+                                <p class="doc-name">NAAC_Criterion_3_Data.xlsx</p>
+                                <p class="doc-meta">Modified by IQAC Team • Yesterday</p>
+                            </div>
+                        </li>
+                        <li class="doc-item">
+                            <i class="fas fa-file-pdf doc-icon" style="color: #D83B01;"></i>
+                            <div class="doc-info">
+                                <p class="doc-name">New_Leave_Policy.pdf</p>
+                                <p class="doc-meta">Modified by HR Dept • Monday</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sp-content-right">
+            <div class="sp-card">
+                <div class="sp-card-header">Quick Links</div>
+                <div class="sp-card-body">
+                    <div class="quick-links">
+                        <div class="ql-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>Calendar</div>
+                        </div>
+                        <div class="ql-card">
+                            <i class="fas fa-images"></i>
+                            <div>Gallery</div>
+                        </div>
+                        <div class="ql-card">
+                            <i class="fas fa-address-book"></i>
+                            <div>Directory</div>
+                        </div>
+                        <div class="ql-card">
+                            <i class="fas fa-laptop"></i>
+                            <div>IT Helpdesk</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sp-card">
+                <div class="sp-card-header">Upcoming Events</div>
+                <div class="sp-card-body" style="padding: 0;">
+                    <ul class="doc-list" style="padding: 1rem;">
+                        <li class="doc-item">
+                            <div style="background: var(--sp-bg); padding: 0.5rem; text-align: center; border-radius: 4px; min-width: 50px;">
+                                <div style="color: #D83B01; font-weight: bold; font-size: 0.8rem;">APR</div>
+                                <div style="font-size: 1.2rem; font-weight: bold;">12</div>
+                            </div>
+                            <div class="doc-info">
+                                <p class="doc-name">Faculty Board Meeting</p>
+                                <p class="doc-meta">10:00 AM - Conference Room A</p>
+                            </div>
+                        </li>
+                        <li class="doc-item">
+                            <div style="background: var(--sp-bg); padding: 0.5rem; text-align: center; border-radius: 4px; min-width: 50px;">
+                                <div style="color: #D83B01; font-weight: bold; font-size: 0.8rem;">APR</div>
+                                <div style="font-size: 1.2rem; font-weight: bold;">18</div>
+                            </div>
+                            <div class="doc-info">
+                                <p class="doc-name">Internal Exams Begin</p>
+                                <p class="doc-meta">All Departments</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+</body>
+</html>

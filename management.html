@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Management Analytics - SSM Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --mgt-dark: #201F1E;
+            --mgt-panel: #292827;
+            --mgt-bg: #11100F;
+            --mgt-text: #F3F2F1;
+            --mgt-muted: #A19F9D;
+            --mgt-accent: #0078D4;
+            --mgt-success: #107C10;
+            --mgt-warning: #FCE100;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--mgt-bg); margin: 0; padding: 0; color: var(--mgt-text); display: flex; height: 100vh; overflow: hidden; }
+        
+        /* Sidebar */
+        .sidebar { width: 60px; background: var(--mgt-dark); border-right: 1px solid #3B3A39; display: flex; flex-direction: column; align-items: center; padding-top: 1rem; }
+        .nav-item { width: 40px; height: 40px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--mgt-muted); margin-bottom: 0.5rem; text-decoration: none; transition: background 0.2s; font-size: 1.2rem; }
+        .nav-item:hover { background: #3B3A39; color: white; }
+        .nav-item.active { background: #3B3A39; color: var(--mgt-accent); border-left: 2px solid var(--mgt-accent); }
+        .sidebar-bottom { margin-top: auto; margin-bottom: 1rem; }
+        
+        /* Main Area */
+        .main-area { flex: 1; display: flex; flex-direction: column; }
+        .topbar { height: 50px; background: var(--mgt-dark); border-bottom: 1px solid #3B3A39; display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; }
+        .title { font-weight: 600; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .title img { height: 20px; }
+        .controls { display: flex; gap: 1rem; align-items: center; }
+        .btn-update { background: var(--mgt-accent); color: white; border: none; padding: 0.25rem 1rem; border-radius: 2px; font-weight: 600; font-size: 0.85rem; cursor: pointer; }
+        
+        /* Dashboard Content */
+        .dashboard { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; }
+        .header { display: flex; justify-content: space-between; align-items: flex-end; }
+        .header h1 { margin: 0; font-weight: 300; font-size: 2rem; }
+        .filters { display: flex; gap: 1rem; }
+        .filter-select { background: var(--mgt-dark); border: 1px solid #484644; color: white; padding: 0.4rem 1rem; border-radius: 2px; font-family: inherit; }
+        
+        /* KPI Grid */
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+        .kpi-card { background: var(--mgt-dark); border: 1px solid #3B3A39; padding: 1.5rem; border-radius: 4px; display: flex; flex-direction: column; }
+        .kpi-title { color: var(--mgt-muted); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 0.5rem 0; }
+        .kpi-value { font-size: 2.2rem; font-weight: 300; margin: 0; }
+        .kpi-trend { font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; margin-top: 0.5rem; }
+        .trend-up { color: var(--mgt-success); }
+        .trend-down { color: var(--mgt-warning); }
+        
+        /* Charts Grid */
+        .charts-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; flex: 1; min-height: 400px; }
+        .chart-card { background: var(--mgt-dark); border: 1px solid #3B3A39; padding: 1.5rem; border-radius: 4px; display: flex; flex-direction: column; }
+        .chart-header { font-weight: 600; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .chart-area { flex: 1; position: relative; display: flex; align-items: flex-end; gap: 2%; padding-top: 2rem; border-bottom: 1px solid #484644; border-left: 1px solid #484644; }
+        
+        /* Mock Bar Chart */
+        .bar { flex: 1; background: var(--mgt-accent); border-radius: 2px 2px 0 0; position: relative; transition: height 0.5s, opacity 0.2s; cursor: pointer; }
+        .bar:hover { opacity: 0.8; }
+        .bar-label { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; color: var(--mgt-muted); }
+        .bar-value { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); font-size: 0.75rem; font-weight: bold; }
+        
+        /* Power BI Logo */
+        .pbi-logo { color: #F2C811; }
+        
+        /* Activity List */
+        .activity-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1rem; }
+        .activity-item { display: flex; gap: 1rem; align-items: flex-start; }
+        .activity-icon { width: 32px; height: 32px; border-radius: 50%; background: #3B3A39; display: flex; align-items: center; justify-content: center; color: var(--mgt-accent); flex-shrink: 0; }
+        .activity-content { flex: 1; }
+        .activity-title { font-size: 0.9rem; margin: 0 0 0.25rem 0; line-height: 1.3; }
+        .activity-time { font-size: 0.75rem; color: var(--mgt-muted); margin: 0; }
+        
+        .back-link { position: absolute; bottom: 20px; right: 20px; text-decoration: none; color: var(--mgt-muted); font-weight: 600; font-size: 0.9rem; background: var(--mgt-dark); padding: 0.5rem 1rem; border-radius: 4px; border: 1px solid #3B3A39; }
+        .back-link:hover { color: white; background: #3B3A39; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <a href="#" class="nav-item active" title="Dashboard"><i class="fas fa-chart-line"></i></a>
+        <a href="#" class="nav-item" title="Finance"><i class="fas fa-money-bill-wave"></i></a>
+        <a href="#" class="nav-item" title="Admissions"><i class="fas fa-user-plus"></i></a>
+        <a href="#" class="nav-item" title="Faculty"><i class="fas fa-chalkboard-teacher"></i></a>
+        <a href="#" class="nav-item" title="Cloud Analytics"><i class="fas fa-cloud"></i></a>
+        <div class="sidebar-bottom">
+            <a href="#" class="nav-item" title="Settings"><i class="fas fa-cog"></i></a>
+        </div>
+    </aside>
+
+    <main class="main-area">
+        <header class="topbar">
+            <div class="title">
+                <i class="fas fa-chart-bar pbi-logo"></i> Power BI | Institutional Analytics
+            </div>
+            <div class="controls">
+                <span style="font-size: 0.85rem; color: var(--mgt-muted);">Last refreshed: Just now</span>
+                <button class="btn-update"><i class="fas fa-sync-alt"></i> Refresh</button>
+            </div>
+        </header>
+
+        <div class="dashboard">
+            <div class="header">
+                <h1>Executive Overview</h1>
+                <div class="filters">
+                    <select class="filter-select">
+                        <option>Academic Year: 2025-26</option>
+                        <option>Academic Year: 2024-25</option>
+                    </select>
+                    <select class="filter-select">
+                        <option>All Departments</option>
+                        <option>Computer Science</option>
+                        <option>Mechanical</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <p class="kpi-title">Total Enrollment</p>
+                    <p class="kpi-value">3,248</p>
+                    <p class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> 5.2% vs last year</p>
+                </div>
+                <div class="kpi-card">
+                    <p class="kpi-title">Fees Collected (YTD)</p>
+                    <p class="kpi-value">₹ 42.5 Cr</p>
+                    <p class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> 8.1% vs target</p>
+                </div>
+                <div class="kpi-card">
+                    <p class="kpi-title">Faculty Retention</p>
+                    <p class="kpi-value">94%</p>
+                    <p class="kpi-trend trend-down" style="color: var(--mgt-muted);"><i class="fas fa-minus"></i> Unchanged</p>
+                </div>
+                <div class="kpi-card" style="border-left: 3px solid #107C10;">
+                    <p class="kpi-title">M365 Adoption Rate</p>
+                    <p class="kpi-value">88%</p>
+                    <p class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> 12% in last 30 days</p>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <!-- Bar Chart Area -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        Admissions by Department
+                        <i class="fas fa-ellipsis-h" style="color: var(--mgt-muted); cursor: pointer;"></i>
+                    </div>
+                    <div class="chart-area">
+                        <div class="bar" style="height: 90%;"><span class="bar-value">650</span><span class="bar-label">CSE</span></div>
+                        <div class="bar" style="height: 60%; background: #00B7C3;"><span class="bar-value">420</span><span class="bar-label">ECE</span></div>
+                        <div class="bar" style="height: 75%; background: #498205;"><span class="bar-value">510</span><span class="bar-label">IT</span></div>
+                        <div class="bar" style="height: 40%; background: #8764B8;"><span class="bar-value">280</span><span class="bar-label">MECH</span></div>
+                        <div class="bar" style="height: 30%; background: #FF8C00;"><span class="bar-value">210</span><span class="bar-label">CIVIL</span></div>
+                        <div class="bar" style="height: 55%; background: #E81123;"><span class="bar-value">380</span><span class="bar-label">AI/ML</span></div>
+                    </div>
+                </div>
+
+                <!-- Feed/Activity Area -->
+                <div class="chart-card">
+                    <div class="chart-header">
+                        Recent Alerts & Activity
+                    </div>
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <div class="activity-icon" style="color: #FCE100;"><i class="fas fa-exclamation-triangle"></i></div>
+                            <div class="activity-content">
+                                <p class="activity-title"><strong>Hostel Capacity Alert:</strong> Blocks A & B have reached 95% occupancy.</p>
+                                <p class="activity-time">2 hours ago</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon" style="color: #107C10;"><i class="fas fa-check-circle"></i></div>
+                            <div class="activity-content">
+                                <p class="activity-title"><strong>Purchase Approved:</strong> IT Lab equipment procurement (₹12.5L) approved via Power Automate.</p>
+                                <p class="activity-time">5 hours ago</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon" style="color: #0078D4;"><i class="fas fa-cloud-upload-alt"></i></div>
+                            <div class="activity-content">
+                                <p class="activity-title"><strong>Cloud Backup:</strong> Nightly Azure VM backup completed successfully (4.2 TB).</p>
+                                <p class="activity-time">8 hours ago</p>
+                            </div>
+                        </li>
+                        <li class="activity-item">
+                            <div class="activity-icon" style="color: #A19F9D;"><i class="fas fa-info-circle"></i></div>
+                            <div class="activity-content">
+                                <p class="activity-title"><strong>System Update:</strong> Upcoming Teams policy change scheduled for weekend.</p>
+                                <p class="activity-time">1 day ago</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back to Homepage</a>
+</body>
+</html>

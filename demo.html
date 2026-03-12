@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Demos - SSM Technologies</title>
+    <meta name="description" content="Explore the Digital Campus Transformation Platform dashboards.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .demo-page {
+            padding-top: 120px;
+            padding-bottom: 6rem;
+            min-height: 80vh;
+        }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .demo-card {
+            background: white;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--ms-gray-30);
+            transition: all var(--transition-normal);
+            display: flex;
+            flex-direction: column;
+        }
+        .demo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--ms-blue-light);
+        }
+        .demo-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .demo-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--transition-normal);
+        }
+        .demo-card:hover .demo-img {
+            transform: scale(1.05);
+        }
+        .demo-content {
+            padding: 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .demo-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--ms-gray-160);
+        }
+        .demo-desc {
+            color: var(--ms-gray-130);
+            margin-bottom: 2rem;
+            flex: 1;
+        }
+        .demo-action {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="logo.jpeg" alt="SSM Technologies Logo" style="height: 40px;">
+                    SSM Technologies
+                </a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html#home">Home</a>
+                <a href="index.html#digital-campus">Digital Campus</a>
+                <a href="index.html#solutions">Solutions</a>
+                <a href="index.html#services">Services</a>
+                <a href="demo.html" class="active demo-link">Demo</a>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="demo-page bg-alt">
+        <div class="container">
+            <div class="text-center">
+                <span class="pill-badge badge-blue">INTERACTIVE PREVIEWS</span>
+                <h1 class="section-title">Explore the Platform</h1>
+                <p style="max-width: 700px; margin: 0 auto;">Select a role-based dashboard below to experience the customized interfaces tailored for different campus stakeholders.</p>
+            </div>
+
+            <div class="demo-grid">
+                <!-- Management Analytics -->
+                <div class="demo-card">
+                    <div class="demo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Management Dashboard" class="demo-img">
+                    </div>
+                    <div class="demo-content">
+                        <h3 class="demo-title"><i class="fas fa-chart-pie text-primary"></i> Management Analytics</h3>
+                        <p class="demo-desc">Executive-level dashboard with Power BI inspired visualizations for enrollment, financials, and overall campus KPIs.</p>
+                        <a href="management.html" class="btn btn-primary demo-action">Launch Analytics</a>
+                    </div>
+                </div>
+
+                <!-- SharePoint Portal -->
+                <div class="demo-card">
+                    <div class="demo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="SharePoint Intranet" class="demo-img">
+                    </div>
+                    <div class="demo-content">
+                        <h3 class="demo-title" style="color: #038387;"><i class="fas fa-sitemap"></i> SharePoint Portal</h3>
+                        <p class="demo-desc">Centralized document management, college news, quick links, and team collaboration hub.</p>
+                        <a href="sharepoint.html" class="btn btn-outline demo-action" style="color: #038387; border-color: #038387;">View Intranet</a>
+                    </div>
+                </div>
+
+                <!-- Faculty Dashboard -->
+                <div class="demo-card">
+                    <div class="demo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Faculty Dashboard" class="demo-img">
+                    </div>
+                    <div class="demo-content">
+                        <h3 class="demo-title text-purple"><i class="fas fa-chalkboard-teacher"></i> Faculty Dashboard</h3>
+                        <p class="demo-desc">Tools for educators integrating Microsoft Teams schedules, assignment grading, and digital approval workflows.</p>
+                        <a href="faculty.html" class="btn btn-purple demo-action">Open Faculty Hub</a>
+                    </div>
+                </div>
+
+                <!-- Student Portal -->
+                <div class="demo-card">
+                    <div class="demo-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Student Portal" class="demo-img">
+                    </div>
+                    <div class="demo-content">
+                        <h3 class="demo-title" style="color: #0078D4;"><i class="fas fa-user-graduate"></i> Student Portal</h3>
+                        <p class="demo-desc">Unified access to courses, assignments, Microsoft 365 apps, and automated digital request forms.</p>
+                        <a href="student.html" class="btn btn-primary demo-action">Log in as Student</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem;">
+                        <img src="logo.jpeg" alt="SSM Logo" style="height: 40px;">
+                        <h3 style="margin-bottom: 0;">SSM Technologies</h3>
+                    </div>
+                    <p style="margin-bottom: 1.5rem;">Empowering educational institutions through Microsoft Cloud complete digital transformation.</p>
+                    
+                    <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: white;">Contact Info</h4>
+                            <p style="color: var(--ms-gray-60); line-height: 1.6; font-size: 0.95rem;">
+                                #9-1-22, Ground Floor<br>
+                                Behind Lutheran Church<br>
+                                Church Peta, Mogalthur Road<br>
+                                Narsapur - 534 275<br>
+                                West Godavari District, AP
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 0.5rem; color: white;">Get in Touch</h4>
+                            <p style="color: var(--ms-gray-60); line-height: 1.6; font-size: 0.95rem;">
+                                <i class="fas fa-phone-alt"></i> +91 7675846735<br>
+                                <i class="fas fa-envelope"></i> info@ssmtechnologies.co.in<br>
+                                <span style="display: block; margin-top: 0.5rem; font-size: 0.85em; opacity: 0.8;">Official correspondence:</span>
+                                <i class="fas fa-envelope"></i> noreply@ssmtechnologies.co.in
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html#home">Home</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#solutions">Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="index.html#solutions">Microsoft 365</a></li>
+                        <li><a href="index.html#solutions">SharePoint</a></li>
+                        <li><a href="index.html#solutions">Power Platform</a></li>
+                        <li><a href="index.html#solutions">Azure</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SSM Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
